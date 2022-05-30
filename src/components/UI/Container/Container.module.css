@@ -1,0 +1,10 @@
+.cMain {
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+}
+
+.cContent {
+	max-width: 900px;
+	width: 100%;
+}
