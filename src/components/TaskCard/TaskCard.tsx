@@ -1,11 +1,23 @@
 import "./TaskCard.css";
 
-import Props from "../../model/Task";
+import Task from "../../model/Task";
 import Card from "../UI/Card/Card";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 
-function TaskCard({ header, description, id }: Props): JSX.Element {
+interface Props extends Task {
+  removeTask: (id: number) => void;
+  toggleCheckTask: (id: number) => void;
+}
+
+function TaskCard({
+  header,
+  description,
+  checked,
+  id,
+  removeTask,
+  toggleCheckTask,
+}: Props): JSX.Element {
   return (
     <Card>
       <div className="d-flex">
@@ -13,6 +25,10 @@ function TaskCard({ header, description, id }: Props): JSX.Element {
           <Input
             type="checkbox"
             style={{ width: "20px", margin: "5px" }}
+            checked={checked}
+            onChange={(e) => {
+              toggleCheckTask(id);
+            }}
           ></Input>
         </div>
         <div>
@@ -24,7 +40,12 @@ function TaskCard({ header, description, id }: Props): JSX.Element {
           className="d-flex justify-end align-center"
           style={{ marginLeft: "auto" }}
         >
-          <Button style={{ backgroundColor: "red" }}>Удалить</Button>
+          <Button
+            style={{ backgroundColor: "red" }}
+            onClick={() => removeTask(id)}
+          >
+            Удалить
+          </Button>
         </div>
       </div>
     </Card>
