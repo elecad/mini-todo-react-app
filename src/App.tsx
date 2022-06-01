@@ -5,9 +5,10 @@ import NavBar from "./components/NavBar/NavBar";
 import FormAdd from "./components/FormAdd/FormAdd";
 import TaskCard from "./components/TaskCard/TaskCard";
 import Task from "./model/Task";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App(): JSX.Element {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useLocalStorage();
 
   const addTask = (header: string, description: string) => {
     setTasks([
